@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         
         if ($password === $user['password']) {
             
-            if ($user['role'] == 'admin') {
+            if ($user['role'] == 'user') {
         
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
@@ -29,10 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 $_SESSION['loggedin'] = true;
                 
                 
-                header("Location: dashboard.php");
+                header("Location: menu.php");
                 exit();
             } else {
-                $error_message = "Access denied. This is for admin only.";
+                $error_message = "Access denied. This is for users only.";
             }
         } else {
             $error_message = "Invalid username or password. Please try again.";
@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 <body>
     <div class="container">
         <div class="header">
-            <h1>Admin Login</h1>
+            <h1>User Login</h1>
             <p>Welcome back to Food Ordering Platform</p>
         </div>
         
