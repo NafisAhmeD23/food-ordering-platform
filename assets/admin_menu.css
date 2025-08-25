@@ -1,17 +1,11 @@
-/* General Reset */
-* {
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836")
+    no-repeat center center/cover;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
-body {
-  background-color: #f8f9fa;
-  color: #333;
-  line-height: 1.6;
-}
-
 /* Navbar */
 header {
   background: white;
@@ -47,36 +41,56 @@ header nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* Labels */
-.form-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #444;
+/* Container for the form */
+.container {
+  max-width: 450px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  padding: 20px 30px;
 }
 
-/* Inputs & Textarea & Select */
-form {
+/* Header section */
+.container h2 {
+  background: #3b82f6; /* blue header */
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  margin: -20px -30px 20px -30px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Form labels */
+.form-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+/* Inputs & Textarea */
+.form-control,
+.form-select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
   border-radius: 6px;
   margin-bottom: 15px;
-  font-size: 14px;
+  transition: border-color 0.2s;
 }
 
 .form-control:focus,
 .form-select:focus {
+  border-color: #3b82f6;
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
 }
 
 /* Checkbox */
 .form-check {
   margin-bottom: 15px;
-  display: flex;
-  align-items: center;
 }
 
 .form-check-input {
@@ -84,18 +98,39 @@ form {
 }
 
 /* Button */
-.btn {
-  width: 100%;
-  padding: 12px;
+.btn-primary {
+  background: #3b82f6;
   border: none;
-  border-radius: 6px;
-  background: #007bff;
-  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  width: 100%;
+  color: #fff;
+  transition: background 0.3s;
 }
 
-.btn:hover {
-  background: #0056b3;
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+/* Success/Error message */
+.success-message,
+.error-message {
+  text-align: center;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.success-message {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
 }
