@@ -6,10 +6,10 @@ session_start();
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     // Unset all session variables.
     $_SESSION = array();
-    
+
     // Destroy the session.
     session_destroy();
-    
+
     // Redirect to the index page.
     header("Location: ../index.php");
     
@@ -48,6 +48,7 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,11 +94,11 @@ $conn->close();
             font-size: 28px;
             margin: 0;
         }
-        
+
         .header .user-info {
             text-align: right;
         }
-        
+
         .header .user-info span {
             display: block;
             opacity: 0.9;
@@ -114,12 +115,14 @@ $conn->close();
             transition: background 0.3s, color 0.3s;
             margin-top: 5px;
             display: inline-block;
-            margin-right: 10px; /* Space between buttons */
+            margin-right: 10px;
+            /* Space between buttons */
         }
+
         .header .menu-btn:hover {
             background: #f0f0f0;
         }
-        
+
         .header .logout-btn {
             background: #fff;
             color: #4a6cf7;
@@ -155,10 +158,10 @@ $conn->close();
             flex: 1;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
 
         .stat-card h2 {
@@ -175,26 +178,27 @@ $conn->close();
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>Admin Dashboard</h1>
             <div class="user-info">
                 <span>Welcome, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>!</span>
-                
-                <a href="menu.php" class="menu-btn">Menu</a>
-                
+
+                <a href="menu.php" class="menu-btn">Add dish item</a>
+
                 <a href="dashboard.php?action=logout" class="logout-btn">Logout</a>
             </div>
         </div>
-        
+
         <div class="dashboard-content">
             <div class="stats-container">
                 <div class="stat-card">
                     <h2>Total Users</h2>
                     <p class="number"><?php echo $total_users; ?></p>
                 </div>
-                
+
                 <div class="stat-card">
                     <h2>Total Orders</h2>
                     <p class="number"><?php echo $total_orders; ?></p>
@@ -203,4 +207,5 @@ $conn->close();
         </div>
     </div>
 </body>
+
 </html>
