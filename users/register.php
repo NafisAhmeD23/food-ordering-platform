@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $error_message = "";
 $success_message = "";
 
