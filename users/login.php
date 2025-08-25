@@ -13,7 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-             background: url('../assets/backgroung.jpg') no-repeat center center/cover;
+            background: url('../assets/backgroung.jpg') no-repeat center center/cover;
         }
         
         .login-container {
