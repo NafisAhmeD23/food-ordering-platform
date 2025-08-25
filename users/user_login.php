@@ -69,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background: url('../assets/backgroung.jpg') no-repeat center center/cover;
         }
         
         .container {
