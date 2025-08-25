@@ -51,7 +51,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Ordering Platform</title>
-    <link rel="stylesheet" href="admin_menu.css">
+    <link rel="stylesheet" type="text/css" href="../assets/admin_menu.css">
     <script>
         // Confirmation before submitting the form
         function confirmSubmit(event) {
@@ -69,9 +69,6 @@ $conn->close();
     <header>
         <nav>
             <div class="logo">🍴 Food Ordering</div>
-            <ul>
-                <li><a href="users/menu.php">Menu</a></li>
-            </ul>
         </nav>
     </header>
 
