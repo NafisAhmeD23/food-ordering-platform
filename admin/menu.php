@@ -80,58 +80,57 @@ $conn->close();
 
         <!-- Success / Error Message -->
         <?php if (!empty($successMessage)): ?>
-            <div style="padding:10px; margin-bottom:15px; border-radius:5px; background:#e6ffe6; color:#006600;">
-                <?= $successMessage ?>
-            </div>
-        <?php endif; ?>
+            <?= $successMessage ?>
+        </div>
+    <?php endif; ?>
 
-        <form method="POST" enctype="multipart/form-data" onsubmit="confirmSubmit(event)">
-            <!-- Name -->
-            <div class="mb-3">
-                <label for="name" class="form-label">Item Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
+    <form method="POST" enctype="multipart/form-data" onsubmit="confirmSubmit(event)">
+        <!-- Name -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Item Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
 
-            <!-- Description -->
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-            </div>
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        </div>
 
-            <!-- Price -->
-            <div class="mb-3">
-                <label for="price" class="form-label">Price ($)</label>
-                <input type="number" step="0.01" class="form-control" id="price" name="price" required>
-            </div>
+        <!-- Price -->
+        <div class="mb-3">
+            <label for="price" class="form-label">Price ($)</label>
+            <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+        </div>
 
-            <!-- Category -->
-            <div class="mb-3">
-                <label for="category" class="form-label">Category</label>
-                <select class="form-select" id="category" name="category" required>
-                    <option value="">Select a category</option>
-                    <option value="Pizza">Pizza</option>
-                    <option value="Drink">Drink</option>
-                    <option value="Desert">Desert</option>
-                </select>
-            </div>
+        <!-- Category -->
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" id="category" name="category" required>
+                <option value="">Select a category</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Drink">Drink</option>
+                <option value="Desert">Desert</option>
+            </select>
+        </div>
 
-            <!-- Image -->
-            <div class="mb-3">
-                <label for="image" class="form-label">Upload Image</label>
-                <input type="file" class="form-control" id="image" name="image" accept="image/*">
-            </div>
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+        </div>
 
-            <!-- Availability -->
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="available" name="available" value="1">
-                <label class="form-check-label" for="available">
-                    Available
-                </label>
-            </div>
+        <!-- Availability -->
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="available" name="available" value="1">
+            <label class="form-check-label" for="available">
+                Available
+            </label>
+        </div>
 
-            <!-- Submit -->
-            <button type="submit" class="btn btn-primary">Save Item</button>
-        </form>
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary">Save Item</button>
+    </form>
     </div>
 
 </body>
