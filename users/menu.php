@@ -184,6 +184,7 @@ $result = $conn->query($sql);
             <ul>
                 <li><a href="#cart">Cart</a></li>
                 <li><a href="review.php">Give Review</a></li>
+                <li><a href="index.php">logout</a></li>
             </ul>
         </nav>
     </header>
