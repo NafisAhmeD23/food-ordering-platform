@@ -11,7 +11,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     session_destroy();
     
     // Redirect to the index page.
-    header("Location: index.php");
+    header("Location: ../index.php");
     
     // Ensure no more code is executed after the redirect.
     exit();
