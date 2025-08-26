@@ -182,7 +182,6 @@ $result = $conn->query($sql);
         <nav>
             <div class="logo">🍴 Food Ordering</div>
             <ul>
-                <li><a href="#cart">Cart</a></li>
                 <li><a href="review.php">Give Review</a></li>
                 <li><a href="../index.php">logout</a></li>
             </ul>
