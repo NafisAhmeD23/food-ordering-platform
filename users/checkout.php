@@ -1,11 +1,11 @@
 <?php
-session_start(); // Assuming cart data is stored in session
+session_start();
 
 // Database connection
 $host = 'localhost';
 $db = 'food_ordering_platform';
 $user = 'root';
-$pass = ''; // Update with your actual password
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -23,30 +23,27 @@ try {
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
-        // Simulate user_id and cart for demo purposes
-        $user_id = 1; // Replace with actual logged-in user ID
-        $cart = $_SESSION['cart'] ?? [
-            ['food_id' => 2, 'quantity' => 1],
-            ['food_id' => 5, 'quantity' => 2]
-        ];
 
-        // Calculate total price and prepare item summary
+        // Use the cart stored in session
+        $cart = $_SESSION['checkout_cart'] ?? [];
+
+        if (empty($cart)) {
+            echo "<h2>❌ Your cart is empty!</h2>";
+            exit;
+        }
+
         $total_price = 0;
         $items_list = [];
 
-        foreach ($cart as $item) {
-            $stmt = $pdo->prepare("SELECT name, price FROM food_items WHERE food_id = ?");
-            $stmt->execute([$item['food_id']]);
-            $food = $stmt->fetch();
+        foreach ($cart as $name => $item) {
+            $quantity = $item['quantity'];
+            $price = $item['price'];
+            $line_total = $price * $quantity;
+            $total_price += $line_total;
 
-            if ($food) {
-                $line_total = $food['price'] * $item['quantity'];
-                $total_price += $line_total;
-                $items_list[] = $food['name'] . " (x" . $item['quantity'] . ")";
-            }
+            $items_list[] = $name . " (x" . $quantity . ")";
         }
 
-        // Convert items array to text for storage in myorders
         $items_text = implode(", ", $items_list);
 
         // Insert into myorders table
@@ -58,12 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p>Items: {$items_text}</p>";
         echo "<p>Total Price: {$total_price}৳</p>";
 
-        unset($_SESSION['cart']); // Clear cart after checkout
+        // Clear cart
+        unset($_SESSION['cart']);
+        unset($_SESSION['checkout_cart']);
     } else {
         echo "<h2>❌ Checkout Cancelled</h2>";
     }
 } else {
-    // Show confirmation form
     ?>
     <!DOCTYPE html>
     <html>

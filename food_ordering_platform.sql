@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2025 at 05:52 PM
+-- Generation Time: Aug 26, 2025 at 08:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,6 +37,40 @@ CREATE TABLE `food_items` (
   `available` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `food_items`
+--
+
+INSERT INTO `food_items` (`food_id`, `name`, `description`, `price`, `category`, `image`, `available`) VALUES
+(1, 'Pizza', 'puasdfhasd;fhaiofj', 0.00, 'Pizza', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `myorders`
+--
+
+CREATE TABLE `myorders` (
+  `order_id` int(11) NOT NULL,
+  `items` text NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `myorders`
+--
+
+INSERT INTO `myorders` (`order_id`, `items`, `total_price`, `created_at`) VALUES
+(1, 'Pizza x3, Burger x2', 48.69, '2025-08-25 23:09:52'),
+(2, 'Pizza x1, Burger x3', 30.23, '2025-08-26 04:52:47'),
+(3, '', 0.00, '2025-08-26 04:58:52'),
+(4, '', 0.00, '2025-08-26 05:00:31'),
+(5, '', 0.00, '2025-08-26 05:02:17'),
+(6, '', 0.00, '2025-08-26 06:08:48'),
+(7, 'Pizza (x3)', 0.00, '2025-08-26 06:18:45'),
+(8, 'Pizza (x2)', 0.00, '2025-08-26 06:19:43');
+
 -- --------------------------------------------------------
 
 --
@@ -68,16 +102,15 @@ CREATE TABLE `order_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviews` (replaced)
+-- Table structure for table `reviews`
 --
 
 CREATE TABLE `reviews` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `user_id` INT(11) NOT NULL,
-  `rating` TINYINT(1) NOT NULL CHECK (`rating` BETWEEN 1 AND 5),
-  `comment` TEXT NOT NULL,
-  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rating` tinyint(1) NOT NULL CHECK (`rating` between 1 and 5),
+  `comment` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,18 +131,12 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `myorders` (added)
+-- Dumping data for table `users`
 --
 
-CREATE TABLE `myorders` (
-  `order_id` int(11) NOT NULL,
-  `items` text NOT NULL,
-  `total_price` decimal(10,2) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `full_name`, `address`, `phone`, `created_at`) VALUES
+(2, 'Nafis', 'Nafis@gmail.com', '12345678', 'admin', 'Nafis Ahmed', 'Mirpur', '15151616', '2025-08-25 22:46:26');
 
 --
 -- Indexes for dumped tables
@@ -120,6 +147,12 @@ CREATE TABLE `myorders` (
 --
 ALTER TABLE `food_items`
   ADD PRIMARY KEY (`food_id`);
+
+--
+-- Indexes for table `myorders`
+--
+ALTER TABLE `myorders`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `orders`
@@ -137,6 +170,12 @@ ALTER TABLE `order_items`
   ADD KEY `food_id` (`food_id`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -152,7 +191,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `food_items`
 --
 ALTER TABLE `food_items`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `myorders`
+--
+ALTER TABLE `myorders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -167,10 +212,16 @@ ALTER TABLE `order_items`
   MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -188,7 +239,6 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `food_items` (`food_id`);
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
