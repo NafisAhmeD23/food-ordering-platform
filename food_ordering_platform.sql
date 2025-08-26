@@ -37,13 +37,6 @@ CREATE TABLE `food_items` (
   `available` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `food_items`
---
-
-INSERT INTO `food_items` (`food_id`, `name`, `description`, `price`, `category`, `image`, `available`) VALUES
-(1, 'Pizza', 'puasdfhasd;fhaiofj', 0.00, 'Pizza', NULL, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -57,23 +50,6 @@ CREATE TABLE `myorders` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `myorders`
---
-
-INSERT INTO `myorders` (`order_id`, `items`, `total_price`, `created_at`) VALUES
-(1, 'Pizza x3, Burger x2', 48.69, '2025-08-25 23:09:52'),
-(2, 'Pizza x1, Burger x3', 30.23, '2025-08-26 04:52:47'),
-(3, '', 0.00, '2025-08-26 04:58:52'),
-(4, '', 0.00, '2025-08-26 05:00:31'),
-(5, '', 0.00, '2025-08-26 05:02:17'),
-(6, '', 0.00, '2025-08-26 06:08:48'),
-(7, 'Pizza (x3)', 0.00, '2025-08-26 06:18:45'),
-(8, 'Pizza (x2)', 0.00, '2025-08-26 06:19:43');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orders`
 --
 
