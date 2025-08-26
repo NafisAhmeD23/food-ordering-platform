@@ -48,27 +48,15 @@ if (isset($_GET['remove'])) {
     unset($_SESSION['cart'][$removeName]);
 }
 
-// Checkout: save order in DB
+// Checkout: redirect to checkout.php
 if (isset($_POST['checkout'])) {
     if (!empty($_SESSION['cart'])) {
-        $orderItems = [];
-        $totalPrice = 0;
+        // Store cart temporarily in session for checkout.php
+        $_SESSION['checkout_cart'] = $_SESSION['cart'];
 
-        foreach ($_SESSION['cart'] as $name => $item) {
-            $orderItems[] = $name . " x" . $item['quantity'];
-            $totalPrice += $item['price'] * $item['quantity'];
-        }
-
-        $itemsString = implode(", ", $orderItems);
-
-        $stmt = $conn->prepare("INSERT INTO myorders (items, total_price) VALUES (?, ?)");
-        $stmt->bind_param("sd", $itemsString, $totalPrice);
-        $stmt->execute();
-        $stmt->close();
-
-        // Clear cart after checkout
-        $_SESSION['cart'] = [];
-        $successMessage = "Order placed successfully!";
+        // Redirect to checkout.php
+        header("Location: checkout.php");
+        exit();
     }
 }
 
@@ -224,10 +212,6 @@ $result = $conn->query($sql);
     <section id="cart" class="cart">
         <h2>🛒 Your Cart</h2>
         <?php
-        if (isset($successMessage)) {
-            echo "<p class='success'>$successMessage</p>";
-        }
-
         if (!empty($_SESSION['cart'])) {
             echo "<form method='POST'>";
             echo "<table>";
@@ -249,7 +233,7 @@ $result = $conn->query($sql);
 
             echo "<tr><th colspan='3'>Total</th><th colspan='2'>$" . number_format($total, 2) . "</th></tr>";
             echo "</table>";
-            echo "<br><button type='submit' name='checkout' class='btn'>Checkout</button>";
+            echo "<br><button type='submit' name='checkout' class='btn'>Proceed to Checkout</button>";
             echo "</form>";
         } else {
             echo "<p>Your cart is empty.</p>";
